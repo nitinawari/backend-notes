@@ -1,11 +1,11 @@
-const asynchandler=(requestHandler) =>{
-         (res , req , next ) =>{
-         Promise.resolve(requestHandler(res, req , next )).
+const asyncHandler=(requestHandler) =>{
+       return  (req , res , next ) =>{
+         Promise.resolve(requestHandler(req, res , next )).
          catch((err) => next(err))
          }
 }
 
-export {asynchandler}
+export {asyncHandler}
 
 
 // this is a highorder function 

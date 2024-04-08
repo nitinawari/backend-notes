@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors"
+import cookieParser from "cookie-parser"
 
 const app = express()
 
@@ -19,8 +21,11 @@ app.use(express.static("public")) //it will store image , files for temperary in
 
 app.use(cookieParser())// use for crud operation on cokkies
 
+//importing routes
+import userRouter from "./routes/user.routes.js"
 
 
+app.use("/api/v1/users" , userRouter )
 
 export default app;
 
