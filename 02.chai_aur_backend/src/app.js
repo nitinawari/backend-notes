@@ -24,8 +24,8 @@ app.use(cookieParser())// use for crud operation on cokkies
 //importing routes
 import userRouter from "./routes/user.routes.js"
 
-
-app.use("/api/v1/users" , userRouter )
+//routes declaration 
+app.use("/api/v1/users" , userRouter ) //userrouter is  a router 
 
 export default app;
 
