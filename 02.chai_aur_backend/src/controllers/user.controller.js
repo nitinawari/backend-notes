@@ -65,7 +65,7 @@ if(!avatarLocalPath){
       })
 
      const createduser = await User.findById(user._id).select(
-          "-password -refreshToken"
+          "-password -refreshToken".
       )
 
      if(!createduser){
