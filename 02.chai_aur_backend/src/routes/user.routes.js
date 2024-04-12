@@ -2,15 +2,16 @@
 
 
 import {Router }from "express";
-import { registerUser } from "../controllers/user.controller.js";
+import { registerUser , loginUser , logoutUser } from "../controllers/user.controller.js";
 import {upload} from "../middlewares/multer.middleware.js"
+import { verifyJWT } from "../middlewares/auth.middleware.js";
  
 const router  = Router(); //creating router 
   
 router.route("/register").post(
          upload.fields([
                   {
-                           name:" avatar ",
+                           name:"avatar",
                            maxcount : 1
                   },{
                            name: "coverImage",
@@ -19,6 +20,6 @@ router.route("/register").post(
          ]),
          registerUser)  // giving router for particular endpoint with mehthod like get , poaat  and function to execute here registeruser 
 
-// router.route("/login").get(loginuser)
-
+router.route("/login").post(loginUser)
+router.route ("/logout").post(verifyJWT , logoutUser)
 export default router

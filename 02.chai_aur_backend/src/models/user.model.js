@@ -38,7 +38,7 @@ const userSchema  = new mongoose.Schema({
          },
          refreshToken:{
                   type:String,
-                  required:true
+            
          },
          watchHistory:[{
             type: mongoose.Schema.Types.ObjectId,
@@ -73,13 +73,12 @@ userSchema.methods.generateAccessToken = function(){
                   }
          )
 }
-userSchema.methods.generateRefreshToken = function(){
-         return jwt.sign(
+userSchema.methods.generateRefreshToken =  function(){
+         return   jwt.sign(
                   {
-                        _id: this._id,
-                    
+                        _id:this._id,
                   },
-                  process.env.REFRESH_TOKEN_SECRET , 
+                  process.env.REFRESH_TOKEN_SECRET, 
                   {
                   expiresIn: process.env.REFRESH_TOKEN_EXPIRY 
                   }
