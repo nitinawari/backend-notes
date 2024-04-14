@@ -32,5 +32,26 @@ const uploadOnCloudinary = async(localfilepath)=>{
               return null; 
          }
 }
+const destroyPreUploadedFile=async(previousFilePath)=>{
+  try {
+    if(!previousFilePath) return null;
+// Extract public ID from Cloudinary URL
 
-export {uploadOnCloudinary}
+    function extractPublicId(previousFilePath) {
+      const parts = url.split('/');
+      const lastPart = parts[parts.length - 1];
+      const withoutExtension = lastPart.split('.')[0];
+      return withoutExtension;
+  }
+  const public_id = extractPublicId(previousFilePath)
+
+     const responce =  await cloudinary.uploader.destroy(public_id)
+   
+     return responce 
+    
+  } catch (error) {
+    console.log("avatar destroying err: ", error)
+  }
+
+}
+export {uploadOnCloudinary , destroyPreUploadedFile}
